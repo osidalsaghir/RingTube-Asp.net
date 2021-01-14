@@ -1,0 +1,46 @@
+﻿@model IEnumerable<RingTube.Models.purchased>
+
+@{
+    ViewBag.Title = "PurchasedRingtones";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Purchased Ringtones</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+           Ringtone @Html.DisplayNameFor(model => model.ringtone.name)
+        </th>
+        <th>
+           User @Html.DisplayNameFor(model => model.user.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.purchasedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchasedWithPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ringtone.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.purchasedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchasedWithPrice)
+        </td>
+       
+    </tr>
+}
+
+</table>

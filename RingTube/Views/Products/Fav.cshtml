@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "AddToFav";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">My Favorite List</h2>
+            </div>
+            <div class="content">
+                
+                    <div class="col-md-9">
+                        <div class="products">
+                            <div class="row no-gutters">
+                                @if (ViewBag.FavList.Count < 1)
+                                {
+                                    <div class="block-heading">
+                                        <h2 class="text-info">There is no Favorite Items</h2>
+                                    </div>
+                                   
+                                }
+                                else
+                                {
+                                    foreach (var items in ViewBag.FavList)
+                                    {
+                                        <div class="col-12 col-md-6 col-lg-4">
+
+                                            <div class="clean-product-item">
+                                                <a href="/Products/DeleteFromFav?id=@items.id">
+
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <div class="product-name"><a href="/Products/SingleProduct?id=@items.id">@items.name</a></div>
+                                                <div class="about">
+                                                    <p>Auther : @items.auther</p>
+                                                    <div class="price">
+                                                        <h3>@items.Price TL</h3>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    }
+                                }
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+</main>

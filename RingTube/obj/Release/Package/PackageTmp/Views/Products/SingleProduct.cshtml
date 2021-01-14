@@ -1,0 +1,74 @@
+﻿@using RingTube.Models;
+@{
+    RingTubeModel m = new RingTubeModel();
+    ViewBag.Title = "SingleProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container">
+            <div class="block-content">
+                <div class="product-info">
+                    <div class="row">
+                        <div class="col-md-6 text-center align-self-center"><audio controls="" src="/@ViewBag.urlCutten"></audio></div>
+                        <div class="col-md-6">
+                            <div class="info">
+                                <h3>@ViewBag.SingleProduct.name</h3><a href="/Products/AddToFav?id=@ViewBag.SingleProduct.id" class="btn btn-outline-primary text-truncate float-none float-sm-none add-another-btn" data-bs-hover-animate="pulse" type="button" style="background: #fffcfc;border-color: rgb(0,0,0);color: rgb(255,22,22);">Add To Favorite List<i class="fas fa-plus-circle edit-icon"></i></a>
+                                <div class="price">
+                                    <h3>@ViewBag.SingleProduct.Price</h3>
+                                </div><a href="/Products/AddToCart?id=@ViewBag.SingleProduct.id" class="btn btn-primary" type="button" style="background: rgb(255,22,22);border-color: rgb(255,255,255);"><i class="icon-basket"></i>Add to Cart</a>
+                                <div class="summary">
+                                    <p>
+                                        @ViewBag.SingleProduct.dis
+                                    </p>
+                                    <p>
+                                        Category :
+                                    </p>
+                                    @{
+                                        int s = ViewBag.SingleProduct.catID;
+                                    }
+                                    <span class="badge badge-dark">@m.categories.Where(d => d.id == s).FirstOrDefault().name;</span>
+
+                                    <br />
+                                    <p>
+                                        Tags :
+                                    </p>
+                                    @foreach (var tag in ViewBag.tags)
+                                    {
+                                        <span class="badge badge-info">@tag.name</span>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info"></div>
+                <div class="clean-related-items">
+                    <h3>Related Products</h3>
+                    <div class="items">
+                        <div class="row justify-content-center">
+                            @foreach (var items in ViewBag.getThree)
+                            {
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="clean-related-item" style="padding: 20px;">
+
+                                        <div class="related-name">
+                                            <a href="/Products/SingleProduct?id=@items.id">@items.name</a>
+                                            <p>Auther : @items.auther</p>
+                                            <h4 style="border-color: rgb(237,237,237);color: #000000 !important;">@items.Price</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

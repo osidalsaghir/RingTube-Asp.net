@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <main class="page catalog-page">
+        <section class="clean-block clean-catalog dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Catalog Page</h2>
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="d-none d-md-block">
+                                <div class="filters">
+                                    <div class="filter-item">
+                                        <h3>Categories</h3>
+                                        <form method="post" action="@Url.Action("Filter", "Products")">
+                                            @foreach (var cat in ViewBag.cat)
+                                            {
+
+                                                <div class="form-check"><input name="cats" value="@cat.id" selected class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">@cat.name</label></div>
+
+
+                                            }
+                                            <button type="submit" class="btn btn-primary">Filter</button>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-9">
+                            <div class="products">
+                                <div class="row no-gutters">
+                                    @foreach (var items in ViewBag.products)
+                                    {
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="clean-product-item">
+                                                
+                                                <div class="product-name"><a href="/Products/SingleProduct?id=@items.id">@items.name</a></div>
+                                                <div class="about">
+                                                    <p>Auther : @items.auther</p>
+                                                    <div class="price">
+                                                        <h3>@items.Price TL</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>

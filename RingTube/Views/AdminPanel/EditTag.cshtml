@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "EditTag";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="col-md-6 col-xl-3 mb-4">
+    <form method="post" action="@Url.Action("EditTag", "AdminPanel")" enctype="multipart/form-data">
+        <h5>Add Tag</h5>
+        <br />
+        <div class="form-group">
+            <label for="exampleInputPassword1">Tag Name</label>
+            <input name="name" type="text" class="form-control" id="exampleInputPassword1" required placeholder="Name" value="@ViewBag.name.name">
+            <input name="id" hidden type="text" class="form-control" id="exampleInputPassword1" required placeholder="Name" value="@ViewBag.name.id">
+        </div>
+
+
+
+
+        <button type="submit" class="btn btn-primary">Update </button>
+    </form>
+

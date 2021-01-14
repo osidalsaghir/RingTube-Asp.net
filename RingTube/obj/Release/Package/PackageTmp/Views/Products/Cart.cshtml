@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="page shopping-cart-page">
+    <section class="clean-block clean-cart dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Shopping Cart</h2>
+            </div>
+            @if (ViewBag.Cart.Count != 0)
+            {
+                <div class="content">
+                    <div class="row no-gutters">
+                        <div class="col-md-12 col-lg-8">
+
+                            <div class="items">
+
+                                @foreach (var item in ViewBag.Cart)
+                                {
+                                    <div class="product">
+                                        <div class="row justify-content-center align-items-center">
+
+                                            <div class="col-md-5 product-info">
+                                                <a class="product-name" href="#">@item.name</a>
+
+                                            </div>
+
+                                            <div class="col-6 col-md-2 price"><span>@item.Price</span></div>
+                                            <a href="/Products/DeleteFromCart?id=@item.id">Delete</a>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="summary">
+                                <h3>Summary</h3>
+                                @foreach (var item in ViewBag.Cart)
+                                {
+                                    <h4><span class="text">@item.name</span><span class="price">@item.Price</span></h4>
+                                }
+                                <h4><span class="text">Total</span><span class="price">@ViewBag.Total</span></h4>
+                                <a href="/Products/Purchase" class="btn btn-primary btn-block btn-lg" type="button">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+
+                <div class="block-heading">
+                    <h2 class="text-info">Nothing in Shopping Cart</h2>
+                </div>
+
+            }
+        </div>
+    </section>
+</main>
+

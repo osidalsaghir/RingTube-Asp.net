@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="clean-block clean-info dark">
+    <div class="container">
+        <div class="block-heading">
+            <h2 class="text-info">Purchased Ringtones</h2>
+            <p>Profile for @Context.User.Identity.Name</p>
+        </div>
+        @using RingTube.Models;
+        @{
+            RingTubeModel m = new RingTubeModel();
+            int counter = 0;
+        }
+        @foreach (var items in ViewBag.ringtones)
+        {
+            counter = counter + 1;
+
+            int s = items.catID;
+
+            <div class="row text-sm-left justify-content-center align-items-center">
+                <div class="col-md-6 text-center text-sm-center text-md-center text-lg-center text-xl-center align-self-center">
+                    <audio controls="" >
+                        <source src="/@items.url" type="audio/mp3">
+                    </audio>
+                </div>
+                <div class="col-md-6">
+                    <h3>@items.name</h3>
+                    <div class="getting-started-info">
+                        <p>Auther : @items.auther.</p>
+                        <p>Category : @m.categories.Where(d => d.id == s).FirstOrDefault().name </p>
+                        <p>@items.dis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+
+
+        }
+
+
+
+    </div>
+</section>

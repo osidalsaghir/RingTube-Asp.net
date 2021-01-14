@@ -1,0 +1,155 @@
+﻿@using RingTube.Models;
+@{
+    RingTubeModel m = new RingTubeModel();
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Earnings (till now)</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span>@m.purchaseds.Select(x => x.PurchasedWithPrice).ToList().Sum() TL</span></div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Users</span></div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>@m.users.Where(x => x.role == "u").Count()</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-warning py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Admin Users</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span>@m.users.Where(x => x.role == "a").Count()</span></div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xl-3 mb-4">
+            <form method="post" action="@Url.Action("Index", "AdminPanel")" enctype="multipart/form-data">
+                <h5>Add New Ringtone</h5>
+                <br />
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Add mp3 file</label>
+                    <input type="file" typeof=".mp3" required class="form-control" id="exampleInputEmail1" name="file" placeholder="mp3 file">
+                    <small id="emailHelp" class="form-text text-muted">The file should be with formate .mp3</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Auther</label>
+                    <input name="auther" type="text" class="form-control" id="exampleInputPassword1" placeholder="Auther">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Name</label>
+                    <input name="name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Description</label>
+                    <input name="description" type="text" class="form-control" id="exampleInputPassword1" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Price</label>
+                    <input name="price" type="number" class="form-control" id="exampleInputPassword1" placeholder="Price">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Select Category</label>
+                    <select name="category" class="form-control" id="exampleFormControlSelect2">
+                        @foreach (var items in ViewBag.cat)
+                        {
+                            if (items != null)
+                            {
+                                <option value="@items.id">
+                                    @items.name
+                                </option>
+                            }
+
+                        }
+
+                    </select>
+
+                </div>
+                <label>Select Tags</label>
+                @foreach (var items in ViewBag.tag)
+                {
+                    if (items != null)
+                    {<div class="form-check">
+                            <input class="form-check-input" name="tagnames" type="checkbox" value="@items.id" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                @items.name
+                            </label>
+                        </div>
+                    }
+
+                }
+
+                <br />
+
+
+                <button type="submit" class="btn btn-primary">Add +</button>
+            </form>
+        </div>
+
+        <div class="col-md-6 col-xl-3 mb-4">
+            <form method="post" action="@Url.Action("Category", "AdminPanel")" enctype="multipart/form-data">
+                <h5>Add Categories</h5>
+                <br />
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Category Name</label>
+                    <input name="name" type="text" class="form-control" id="exampleInputPassword1" required placeholder="Name">
+                </div>
+
+
+
+
+                <button type="submit" class="btn btn-primary">Add + </button>
+            </form>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <form method="post" action="@Url.Action("Tag", "AdminPanel")" enctype="multipart/form-data">
+                <h5>Add Tag</h5>
+                <br />
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Tag Name</label>
+                    <input name="name" type="text" class="form-control" id="exampleInputPassword1" required placeholder="Name">
+                </div>
+
+
+
+
+                <button type="submit" class="btn btn-primary">Add + </button>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+

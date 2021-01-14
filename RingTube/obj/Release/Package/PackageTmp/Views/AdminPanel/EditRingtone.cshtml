@@ -1,0 +1,91 @@
+﻿@using RingTube.Models;
+@{
+    ViewBag.Title = "EditRingtone";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    RingTubeModel m = new RingTubeModel();
+}
+<h3>
+    Edit for @ViewBag.ringtone.name
+</h3>
+
+
+<div class="col-md-6 col-xl-3 mb-4">
+    <form method="post" action="@Url.Action("EditRingtone", "AdminPanel")" enctype="multipart/form-data">
+       
+        <br />
+        <div class="form-group">
+            <input hidden name="id" type="number" class="form-control" value=" @ViewBag.ringtone.id" id="exampleInputPassword1" placeholder="Price">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Auther</label>
+            <input name="auther" type="text" class="form-control" id="exampleInputPassword1" value=" @ViewBag.ringtone.auther" placeholder="Auther">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Name</label>
+            <input name="name" type="text" class="form-control" id="exampleInputPassword1" value=" @ViewBag.ringtone.name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Description</label>
+            <input name="description" type="text" class="form-control" value=" @ViewBag.ringtone.dis" id="exampleInputPassword1" placeholder="Description">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Price</label>
+            <input name="price" type="number" class="form-control" value=" @ViewBag.ringtone.Price" id="exampleInputPassword1" placeholder="Price">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Select Category</label>
+            <select name="category" class="form-control" id="exampleFormControlSelect2">
+                @foreach (var items in ViewBag.cat)
+                {
+                    if (items != null)
+                    {
+                        if (ViewBag.ringtone.catID == items.id)
+                        {
+                            <option selected value="@items.id"> @items.name </option>
+                        }
+                        else
+                        {
+                            <option value="@items.id"> @items.name </option>
+                        }
+
+                    }
+
+                }
+
+            </select>
+
+        </div>
+        <label>Select Tags</label>
+        @foreach (var items in ViewBag.tag)
+        {
+            if (items != null)
+            {
+                int s = items.id;
+                int r = ViewBag.ringtone.id;
+    <div class="form-check">
+        @if (m.ringtoneTags.Where(d => d.tagID == s && d.ringtoneID == r).ToList().Count > 0)
+        {
+            <input checked class="form-check-input" name="tagnames" type="checkbox" value="@items.id" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                @items.name
+            </label>
+        }
+        else
+        {
+            <input class="form-check-input" name="tagnames" type="checkbox" value="@items.id" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                @items.name
+            </label>
+        }
+
+    </div>
+            }
+
+        }
+
+        <br />
+
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

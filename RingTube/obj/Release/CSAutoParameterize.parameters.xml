@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="RingTubeDB-Web.config Connection String" description="RingTubeDB Connection String used in web.config by the application to access the database." defaultValue="Data Source=SQL5101.site4now.net;Initial Catalog=DB_A6DA54_osidoo;User Id=DB_A6DA54_osidoo_admin;Password=osid.2020" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\OSID\\source\\repos\\RingTube\\RingTube\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RingTubeDB']/@connectionString" />
+  </parameter>
+</parameters>

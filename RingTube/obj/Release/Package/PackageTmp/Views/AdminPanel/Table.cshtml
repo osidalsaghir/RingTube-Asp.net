@@ -1,0 +1,227 @@
+﻿@using RingTube.Models;
+@{
+    RingTubeModel rtm = new RingTubeModel();
+    ViewBag.Title = "Table";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@if (ViewBag.Mes != "" && ViewBag.Mes != null)
+{
+    
+    <div class="alert alert-dark" role="alert">
+        @ViewBag.Mes
+    </div>
+   
+}
+
+
+
+
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Ringtone</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Tags</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Categories</a>
+    </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Auther</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Tags</th>
+                        <th>Description</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var items in ViewBag.ringtones)
+                    {
+                        <tr>
+
+                            <td>@items.name</td>
+                            <td>@items.auther</td>
+                            <td>@items.Price</td>
+                            @foreach (var n in ViewBag.cat)
+                            {
+                                if (n.id == items.catID)
+                                {
+                                    <td>@n.name</td>
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+
+                            <td>
+                                <!-- Button trigger modal -->
+                                <button type="button" id="bty" class="btn btn-primary" data-toggle="@items.id" data-target="#exampleModal" data-whatever="hhh" onclick="Fun(@items.id)">Show Tags Related</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="@items.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">@items.name</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Num</th>
+                                                            <th scope="col">Tags Related to @items.name</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{
+                                                            int id;
+                                                            int index = 1;
+                                                        }
+                                                        @foreach (var i in ViewBag.tag)
+                                                        {
+                                                            id = i.tagID;
+                                                            if (i.ringtoneID == items.id)
+                                                            {
+
+
+                                                                <tr>
+                                                                    <th scope="row">@index</th>
+                                                                    <th scope="row">@rtm.tags.Where(d => d.id == id).First().name</th>
+
+                                                                </tr>
+                                                                index = index + 1;
+                                                            }
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@items.dis</td>
+                            <td><a href="/AdminPanel/DeleteRingtone?id=@items.id">delete</a></td>
+                            <td><a href="/AdminPanel/EditRingtone?id=@items.id">edit</a></td>
+                        </tr>
+
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><strong>Auther</strong></td>
+                        <td><strong>Price</strong></td>
+                        <td><strong>Category</strong></td>
+                        <td><strong>Tags</strong></td>
+                        <td><strong>Description</strong></td>
+                        <td><strong>Delete</strong></td>
+                        <td><strong>Edit</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var items in ViewBag.tags)
+                    {
+                        <tr>
+
+                            <td>@items.name</td>
+
+                            <td><a href="/AdminPanel/DeleteTag?id=@items.id">delete</a></td>
+                            <td><a href="/AdminPanel/EditTag?id=@items.id">edit</a></td>
+                        </tr>
+
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><strong>Delete</strong></td>
+                        <td><strong>Edit</strong></td>
+
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var items in ViewBag.cat)
+                    {
+                        <tr>
+
+                            <td>@items.name</td>
+
+                            <td><a href="/AdminPanel/DeleteCategory?id=@items.id">delete</a></td>
+                            <td><a href="/AdminPanel/EditCategory?id=@items.id">edit</a></td>
+                        </tr>
+
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><strong>Auther</strong></td>
+                        <td><strong>Price</strong></td>
+
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<script>
+    function Fun(id) {
+        console.log(id);
+        $('#' + id).modal('toggle')
+    }
+</script>
