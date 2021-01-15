@@ -19,7 +19,7 @@ namespace RingTube.Controllers
             return View();
         }
         
-        public ActionResult SingleProduct(int?id)
+        public ActionResult SingleProduct(int id)
         {
             ringtone request = db.ringtones.Where(d => d.id == id).FirstOrDefault();
             int urlCutID =request.urlCutID;

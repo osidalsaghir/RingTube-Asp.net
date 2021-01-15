@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical">
+  <Class Name="RingTube.Models.category">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <AssociationLine Name="ringtones" Type="RingTube.Models.ringtone" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="3.988" />
+        <Point X="8.5" Y="6.774" />
+        <Point X="10.5" Y="6.774" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\category.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ringtones" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RingTube.Models.cutRingtone">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\cutRingtone.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ringtones" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RingTube.Models.favList">
+    <Position X="13.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAwA=</HashCode>
+      <FileName>Models\favList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RingTube.Models.purchased">
+    <Position X="13.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAACIQAAAAAAgAAAAAAAAAAAAAAAwA=</HashCode>
+      <FileName>Models\purchased.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RingTube.Models.ringtone">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <AssociationLine Name="ringtoneTags" Type="RingTube.Models.ringtoneTag" FixedToPoint="true">
+      <Path>
+        <Point X="10.5" Y="5.5" />
+        <Point X="8.583" Y="5.5" Type="JumpStart" />
+        <Point X="8.417" Y="5.5" Type="JumpEnd" />
+        <Point X="7.5" Y="5.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="shoppingCarts" Type="RingTube.Models.shoppingCart" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="7.375" />
+        <Point X="19.875" Y="7.375" />
+        <Point X="19.875" Y="4.623" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAA2gAAAAAgAgAAAAAAAAMAQAAAAAIAAIAAgA=</HashCode>
+      <FileName>Models\ringtone.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ringtoneTags" />
+      <Property Name="purchaseds" />
+      <Property Name="shoppingCarts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RingTube.Models.ringtoneTag">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgACAAAAAAAQAAAAAAAAAAAgAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\ringtoneTag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RingTube.Models.RingTubeModel">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="favLists" Type="RingTube.Models.favList" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="1.919" />
+        <Point X="12.25" Y="1.941" />
+        <Point X="12.698" Y="1.941" />
+        <Point X="12.698" Y="5.702" />
+        <Point X="13.25" Y="5.702" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ringtoneTags" Type="RingTube.Models.ringtoneTag" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.156" Y="2.117" />
+        <Point X="12.156" Y="4.562" />
+        <Point X="11.701" Y="4.562" Type="JumpStart" />
+        <Point X="11.534" Y="4.562" Type="JumpEnd" />
+        <Point X="10.677" Y="4.562" Type="JumpStart" />
+        <Point X="10.51" Y="4.562" Type="JumpEnd" />
+        <Point X="8.583" Y="4.562" Type="JumpStart" />
+        <Point X="8.417" Y="4.562" Type="JumpEnd" />
+        <Point X="7.5" Y="4.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAEgAAAAAgAAAAAAQEgAAAAAAAIBAEAIAAAA=</HashCode>
+      <FileName>Models\RingTubeModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="categories" />
+      <Property Name="cutRingtones" />
+      <Property Name="favLists" />
+      <Property Name="purchaseds" />
+      <Property Name="ringtones" />
+      <Property Name="ringtoneTags" />
+      <Property Name="shoppingCarts" />
+      <Property Name="tags" />
+      <Property Name="users" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RingTube.Models.shoppingCart">
+    <Position X="18.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAAAAAAwA=</HashCode>
+      <FileName>Models\shoppingCart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RingTube.Models.tag">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAIAAgA=</HashCode>
+      <FileName>Models\tag.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ringtoneTags" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RingTube.Models.user">
+    <Position X="16.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAggAAEABAAAAAEAAAAAIAAAgAAAgA=</HashCode>
+      <FileName>Models\user.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="favLists" />
+      <Property Name="purchaseds" />
+      <Property Name="shoppingCarts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
